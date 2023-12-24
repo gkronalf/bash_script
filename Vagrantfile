@@ -10,6 +10,7 @@ Vagrant.configure("2") do |srv|
  srv.vm.provision :file, source: './scripts/', destination: '/home/vagrant/'
  srv.vm.provision "shell", inline: <<-SHELL
          yum install -y mailx
+         cp /home/vagrant/scripts/mail.sh /etc/cron.hourly/mail.sh
       SHELL
 srv.vm.synced_folder '.', '/vagrant', disabled: true
 end
