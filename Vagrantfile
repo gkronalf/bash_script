@@ -11,6 +11,7 @@ Vagrant.configure("2") do |srv|
  srv.vm.provision "shell", inline: <<-SHELL
          yum install -y mailx
          cp /home/vagrant/scripts/mail.sh /etc/cron.hourly/mail.sh
+         echo "0 * * * * *  run-parts /etc/cron.hourly/mail.sh" >> /var/spool/cron/vagrant
       SHELL
 srv.vm.synced_folder '.', '/vagrant', disabled: true
 end
